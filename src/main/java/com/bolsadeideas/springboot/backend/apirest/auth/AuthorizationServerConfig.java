@@ -69,7 +69,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		public JwtAccessTokenConverter accessTokenConverter() {
 			// TODO Auto-generated method stub
 			JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-			jwtAccessTokenConverter.setSigningKey(JwtConfig.LLAVE_SECRETA);
+			//jwtAccessTokenConverter.setSigningKey(JwtConfig.LLAVE_SECRETA);
+			jwtAccessTokenConverter.setSigningKey(JwtConfig.RSA_PRIVADA);
+			jwtAccessTokenConverter.setVerifierKey(JwtConfig.RSA_PUBLICA);
 			return jwtAccessTokenConverter;
 		}
 		
