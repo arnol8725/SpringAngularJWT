@@ -23,8 +23,10 @@ INSERT INTO clientes (region_id, nombre, apellido, email, create_at) VALUES(6, '
 INSERT INTO clientes (region_id, nombre, apellido, email, create_at) VALUES(7, 'Jade', 'Doe', 'jane.doe@gmail.com', '2018-03-06');
 
 
-insert into usuarios(username,password,enabled) values('arnol','$2a$10$vgc0UcuWLgOVXy00wTCXh.bW9Z9PCWy19ws5GRPIYMh7HNREmbCgC',1);
-insert into usuarios(username,password,enabled) values('admin','$2a$10$6xR2.pQ.fRrO0xrWEAKgC.mkdH/F2pDtqV7c8kpF/HIDSXw249ulG',1);
+
+
+insert into usuarios(username,password,enabled,nombre,apellido,email) values('arnol','$2a$10$vgc0UcuWLgOVXy00wTCXh.bW9Z9PCWy19ws5GRPIYMh7HNREmbCgC',1,'Arnol','Peralta','arnulfo_pp@hotmail.com');
+insert into usuarios(username,password,enabled,nombre,apellido,email) values('admin','$2a$10$6xR2.pQ.fRrO0xrWEAKgC.mkdH/F2pDtqV7c8kpF/HIDSXw249ulG',1,'Administrador','','admin@hotmail.com');
 
 insert into roles (nombre) values ('ROLE_USER');
 insert into roles (nombre) values ('ROLE_ADMIN');
