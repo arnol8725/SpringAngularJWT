@@ -1,5 +1,8 @@
 package com.bolsadeideas.springboot.backend.apirest.auth;
 
+
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +14,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 
@@ -26,6 +30,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		@Qualifier("authenticationManager")
 		private AuthenticationManager authenticationManager;
 
+		@Autowired
+		private InfoAdicionalToken infoAdicionalToken; 
 		
 		@Override
 		public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
@@ -55,9 +61,15 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		@Override
 		public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 			// TODO Auto-generated method stub
+			
+			TokenEnhancerChain tokenEnhancerChain= new TokenEnhancerChain();
+			tokenEnhancerChain.setTokenEnhancers(Arrays.asList(infoAdicionalToken,accessTokenConverter()));
+			
 			endpoints.authenticationManager(authenticationManager)
 			//.tokenStore(tokenStore())
-			.accessTokenConverter(accessTokenConverter());
+			.accessTokenConverter(accessTokenConverter())
+			.tokenEnhancer(tokenEnhancerChain);
+			
 		}
 		/*@Bean
 		public TokenStore tokenStore() {
